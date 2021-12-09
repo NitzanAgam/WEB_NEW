@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalog</title>
+</head>
+<body>
+    {% set page_name= 'About page' %}
+    {% include('menu.html') %}
+
+    <h3>University: {{ uni }}</h3>
+    <h3>Profile Details:</h3>
+    <ul>
+        {% for key,value in profile.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Degrees:</h3>
+    <ol>
+        {% for value in degrees %}
+            <li>{{ value }}</li>
+        {% endfor %}
+    </ol>
+    <h3>Hobbies:</h3>
+    <ol>
+        {% for value in hobbies %}
+            <li>{{ value }}</li>
+        {% endfor %}
+
+    </ol>
+</body>
+</html>
