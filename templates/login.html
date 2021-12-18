@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogIn</title>
+</head>
+<body>
+    {% set page_name= 'Login page' %}
+    {% include('menu.html') %}
+    {% block tohen %}
+        {% if username %}
+            <h3>Welcome to login page !</h3>
+        {% else %}
+            <form action="/login" method="POST">
+                Username: <input name="username" type="text">
+                Password: <input name="password" type="password">
+                <input type="submit">
+            </form>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

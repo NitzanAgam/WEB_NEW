@@ -8,8 +8,8 @@
     {% set page_name= 'Main page' %}
     {% include('menu.html') %}
 
-    {% if name %}
-        <h2>Hello {{ name | default('Stranger',true) | upper() }} {{ secondName }} !</h2>
+    {% if username %}
+        <h2> Welcome back, {{ username | default('guest',true) }} !</h2>
     {% else %}
         <h2>You need to log in</h2>
         <h3>Check out our new <a href="{{ url_for('catalog_func') }}">catalog</a></h3>

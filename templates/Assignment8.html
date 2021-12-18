@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/assignment8.css') }}">
+
+    <head>
+        <title>My Hobbies</title>
+    </head>
+
+    <body>
+    {% set page_name= 'Hobbies page' %}
+    {% include('menu.html') %}
+    {% block tohen %}
+    <h1>Want to know all about my hobbies?</h1>
+    {% endblock %}
+
+    {% if name %}
+        <h2><span> {{ name | default('My', true)|upper }}'s Hobbies Are:</span></h2>
+        <h3>traveling :</h3>
+        {% for travel1 in travel %}
+            <ul>{{ travel1 }}</ul>
+        {% endfor %}
+        <hr>
+
+
+        <h3>Dancing :</h3>
+        {% for dance1 in Dancing %}
+            <ul>{{ dance1 }}</ul>
+        {% endfor %}
+        <hr>
+
+        <h3>Watching Broadway shows :</h3>
+        {% for show1 in bShows %}
+            <ul>{{ show1 }}</ul>
+        {% endfor %}
+
+        <hr>
+    {% else %}
+        <h2>My hobbies are a secret</h2>
+    {% endif %}
+
+    </body>
+
+
+</html>
