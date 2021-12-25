@@ -3,8 +3,12 @@
      {% if session.username %}
         <a href="/logout">Logout</a>
      {% else %}
-        <a href="/login">Login</a>
+        <a href="/assignment9">Login</a>
      {% endif %}
  </header>
-
- <h1>Welcome to {{ page_name }}</h1>
+{% if session.LoggedIn %}
+    <h2> Welcome back, {{ session.get('username') }} ! You've been able to Login</h2>
+{% else %}
+    <h2>Hey, You !</h2>
+{% endif %}
+ <h3>Welcome to {{ page_name }}</h3>

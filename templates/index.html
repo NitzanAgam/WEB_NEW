@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/assignment8.css') }}">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -8,11 +9,12 @@
     {% set page_name= 'Main page' %}
     {% include('menu.html') %}
 
-    {% if username %}
-        <h2> Welcome back, {{ username | default('guest',true) }} !</h2>
-    {% else %}
-        <h2>You need to log in</h2>
-        <h3>Check out our new <a href="{{ url_for('catalog_func') }}">catalog</a></h3>
+    {% if not session.LoggedIn %}
+        <h2>You might want to log in to get all the best offers for you!</h2>
+        <h3>If you want, you can check out our new <a href="{{ url_for('catalog_func') }}">catalog</a> first</h3>
     {% endif %}
+    here you can see all the news about our new products and events coming up. <br>
+    want to check out other things? in the upper part of the site you can see our menu tab, <br>
+    click on the page you want to go to and the magic will happen!
 </body>
 </html>

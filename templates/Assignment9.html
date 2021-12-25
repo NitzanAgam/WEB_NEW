@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/assignment8.css') }}">
+<article class="assignment9">
+
+    <head>
+        <meta charset="UTF-8">
+        <title> Assignment 9 </title>
+    </head>
+
+    <body>
+    {% set page_name= 'Login page' %}
+    {% include('menu.html') %}
+
+    Search First Name:
+    <form method="GET" action="/assignment9">
+        <input name="firstname" type="text">
+        <input type=submit value="search">
+    </form>
+    {% if firstname %}
+        <h2>Search Result: </h2>
+        {% for user in MyUsers %}
+            {% if user['firstname'] == firstname %}
+                <h3> Full name: {{ user['firstname'] }} {{ user['lastname'] }} , email: {{ user['email'] }}<br>
+                </h3>
+            {% endif %}
+        {% endfor %}
+        <br>
+    {% else %}
+        <h2>List of users to search:</h2>
+        {% for user in MyUsers %}
+            <ul> Full name: {{ user['firstname'] }} {{ user['lastname'] }} , email: {{ user['email'] }}<br>
+            </ul>
+        {% endfor %}
+    {% endif %}
+    {% if session.LoggedIn %}
+        <h3>Time to say goodbye? </h3>
+        logout button is available in header menu
+    {% else %}
+        Enter Username:
+        <form method="POST" action="/assignment9">
+            <input name="username">
+            <input type=submit>
+        </form>
+    {% endif %}
+
+    </body>
+</article>
+</html>
