@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../../../static/CSS/assignment8.css">
+
+    <head>
+        <title>Assignment 10</title>
+    </head>
+
+    <body>
+    {% set page_name= 'Assignment 10' %}
+    {% include('menu.html') %}
+    {% block tohen %}
+        <h3> Insertion form </h3>
+        <form action = "/insert_user" method="post">
+            <input type="email" name="email" placeholder="Email">
+            <input type="text" name="first_name" placeholder="First Name">
+            <input type="text" name="last_name" placeholder="Last Name">
+            <input type="submit" value="Insert">
+        </form>
+        {% if session.insert %} <h5 style="color: darkslateblue"> Your insert was successful! </h5> {% endif %}
+
+        <h3> Update form </h3>
+        <form action = "/update_user" method="post">
+
+            <input type="email" name="old_email" placeholder="User's old Email">
+            <input type="email" name="new_email" placeholder="New Email">
+            <input type="text" name="new_fname" placeholder="New First Name">
+            <input type="text" name="new_lname" placeholder="New Last Name">
+            <input type="submit" value="Update">
+        </form>
+        {% if session.update %} <h5 style="color: darkslateblue"> Your update was successful! </h5> {% endif %}
+
+        <h3> Deletion form </h3>
+        <form action="/delete_user" method="post">
+            <input type="email" name="email" placeholder="Email">
+            <br> are you sure you want to delete user?
+            <input type="submit" value="Delete">
+        </form>
+        {% if session.delete %} <h5 style="color: darkslateblue"> Your delete was successful! </h5> {% endif %}
+
+
+        <h3> List of users </h3>
+         <ul>
+            {% for user in users %}
+                <li> Full name: {{ user['first_name'] }} {{ user['last_name'] }} , email: {{ user['email'] }} </li>
+            {% endfor %}
+         </ul>
+    {% endblock %}
+
+</body>
+</html>
