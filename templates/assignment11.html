@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../../../static/CSS/assignment8.css">
+
+    <head>
+        <title>Assignment 11</title>
+    </head>
+
+    <body>
+    {% set page_name= 'Assignment 11' %}
+    {% include('menu.html') %}
+    {% block tohen %}
+    <br><br>
+    <a href='/assignment11/users'> 1. List of users in JSON format</a>
+    <br>
+    <a href='/assignment11/outer_source' > 2. List of users from outer source </a>
+    {% endblock %}
+
+</body>
+</html>

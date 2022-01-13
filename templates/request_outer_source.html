@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../../../static/CSS/assignment8.css">
+
+    <head>
+        <title>Request</title>
+    </head>
+
+    <body>
+    {% set page_name= 'Request Page' %}
+    {% include('menu.html') %}
+    {% block tohen %}
+
+        <h1> Request a user fronted </h1>
+
+        <input id="user_id" name="user_id" type="number" placeholder="User id">
+        <button onclick="get_users()"> Get User </button>
+
+        <main></main>
+
+        <h1> Request a user from backend </h1>
+
+        <form action="/req_backend">
+            <input type="number" name="user_id" placeholder="User id" min="1">
+            <input type="submit" value="Get User">
+        </form>
+
+        {% if users %}
+            {% for user in users %}
+                <h3> User {{ user['data']['id'] }}: </h3>
+                <img src= "{{ user['data']['avatar'] }}" alt="pic">
+                <h4> Name: {{ user['data']['first_name'] }} {{ user['data']['last_name'] }}</h4>
+                <h4> Email: {{ user['data']['email'] }}</h4>
+                <hr>
+            {% endfor %}
+        {% endif %}
+
+        {% if user %}
+            <h3> User {{ user['data']['id'] }}: </h3>
+            <img src= "{{ user['data']['avatar'] }}" alt="pic">
+            <h4> Name: {{ user['data']['first_name'] }} {{ user['data']['last_name'] }}</h4>
+            <h4> Email: {{ user['data']['email'] }}</h4>
+            <hr>
+        {% endif %}
+
+        <script src="../static/javaScript/fetch.js"></script>
+     {% endblock %}
+
+</body>
+</html>

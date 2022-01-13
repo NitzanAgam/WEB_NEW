@@ -1,5 +1,8 @@
-from flask import Flask, redirect, url_for, render_template
+import requests
+from flask import Flask, redirect, url_for, render_template, jsonify
 from flask import request, session
+
+from interact_with_DB import interact_db
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -104,6 +107,62 @@ def assignment9():
 # assignment 10
 from pages.assignment10.assignment10 import assignment10
 app.register_blueprint(assignment10)
+
+
+# assignment 11
+@app.route('/assignment11')
+def assignment11_fun():
+    return render_template('assignment11.html')
+
+
+@app.route('/assignment11/users')
+def assignment11_users_fun():
+    return_dict = {}
+    query = 'select * from users;'
+    users = interact_db(query=query, query_type='fetch')
+    for user in users:
+        return_dict[f'user_{user.id}'] = {
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+        }
+    return jsonify(return_dict)
+
+
+@app.route('/assignment11/outer_source')
+def assignment11_outer_source_fun():
+    return render_template('request_outer_source.html')
+
+
+def get_user(id):
+    if (id != ""):
+        user_id = int(id)
+        return requests.get(f'https://reqres.in/api/users/{user_id}').json()
+
+    users = []
+    length = len(requests.get(f'https://reqres.in/api/users').json()['data'])
+
+    for i in range(1, length+1):
+        res = requests.get(f'https://reqres.in/api/users/{i}')
+        res = res.json()
+        users.append(res)
+    return users
+
+
+@app.route('/req_backend')
+def req_backend():
+    if "user_id" in request.args:
+        user_id = request.args['user_id']
+        if user_id == "":
+            users = get_user(user_id)
+            return render_template('request_outer_source.html', users=users)
+        else:
+            user = get_user(user_id)
+            return render_template('request_outer_source.html', user=user)
+
+    return render_template('request_outer_source.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
