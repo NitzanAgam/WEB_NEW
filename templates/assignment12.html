@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../../../static/CSS/assignment8.css">
+
+    <head>
+        <title>Assignment 12</title>
+    </head>
+
+    <body>
+    {% set page_name= 'Assignment 12' %}
+    {% include('menu.html') %}
+    {% block tohen %}
+    <br><br>
+
+    <a href='/assignment12/restapi_users'> List of users in JSON format</a>
+    <br>
+    <p> For a specific user, add "/user_id" to the URL after clicking the link </p>
+
+    {% endblock %}
+
+</body>
+</html>
